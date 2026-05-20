@@ -55,6 +55,7 @@
 
 <script>
 async function askAI() {
+
   let question = document.getElementById("question").value;
 
   document.getElementById("response").innerHTML = "Thinking...";
@@ -64,13 +65,15 @@ async function askAI() {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ question })
+    body: JSON.stringify({
+      question: question
+    })
   });
 
   const data = await response.json();
 
   document.getElementById("response").innerHTML =
-    data.answer || data.error || "No response.";
+    JSON.stringify(data);
 }
 </script>
 </body>
